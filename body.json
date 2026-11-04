@@ -1,0 +1,8 @@
+﻿{
+  "passengerName": "Test Passenger",
+  "passengerPhone": "03001234567",
+  "pickupLocation": "Lahore Railway Station",
+  "dropoffLocation": "Liberty Market",
+  "rideType": "car",
+  "fare": 500
+}
