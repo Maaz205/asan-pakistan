@@ -554,4 +554,4 @@ app.patch("/api/rides/:id/cancel", authMiddleware, async (req, res) => {
 // START SERVER
 
 module.exports = app;
-startServer();
+
