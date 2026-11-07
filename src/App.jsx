@@ -16,7 +16,7 @@ import {
   X,
   Zap
 } from "lucide-react";
-
+const API_URL = "https://asan-pakistan-opyb.vercel.app";
 const vehicles = [
   {
     id: "mini",
@@ -117,7 +117,7 @@ async function fetchMyRides() {
   setRidesError("");
 
   try {
-    const response = await fetch("http://localhost:5000/api/rides", {
+    const response = await fetch("http://https://asan-pakistan-opyb.vercel.app/api/rides", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -146,7 +146,7 @@ async function cancelRide(rideId) {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/rides/${rideId}/cancel`,
+      `http://https://asan-pakistan-opyb.vercel.app/api/rides/${rideId}/cancel`,
       {
         method: "PATCH",
         headers: {
@@ -177,7 +177,7 @@ async function handleDriverAuthSubmit(e) {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/driver/${isSignup ? "signup" : "login"}`,
+      `http://https://asan-pakistan-opyb.vercel.app/api/driver/${isSignup ? "signup" : "login"}`,
       {
         method: "POST",
         headers: {
@@ -221,10 +221,10 @@ async function fetchDriverRides() {
 
   try {
     const [requestsResponse, myRidesResponse] = await Promise.all([
-      fetch("http://localhost:5000/api/driver/rides", {
+      fetch("http://https://asan-pakistan-opyb.vercel.app/api/driver/rides", {
         headers: { Authorization: `Bearer ${token}` },
       }),
-      fetch("http://localhost:5000/api/driver/my-rides", {
+      fetch("http://https://asan-pakistan-opyb.vercel.app/api/driver/my-rides", {
         headers: { Authorization: `Bearer ${token}` },
       }),
     ]);
@@ -253,7 +253,7 @@ async function acceptDriverRide(rideId) {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/driver/rides/${rideId}/accept`,
+      `http://https://asan-pakistan-opyb.vercel.app/api/driver/rides/${rideId}/accept`,
       {
         method: "PATCH",
         headers: {
@@ -329,7 +329,7 @@ if (!currentUser || !sessionStorage.getItem("asanToken")) {
     setNotice("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/rides", {
+      const response = await fetch("http://https://asan-pakistan-opyb.vercel.app/api/rides", {
         method: "POST",
      headers: {
   "Content-Type": "application/json",
@@ -391,8 +391,8 @@ async function handleAuthSubmit(e) {
   try {
     const endpoint =
       authMode === "signup"
-        ? "http://localhost:5000/api/auth/signup"
-        : "http://localhost:5000/api/auth/login";
+        ? "http://https://asan-pakistan-opyb.vercel.app/api/auth/signup"
+        : "http://https://asan-pakistan-opyb.vercel.app/api/auth/login";
 
     const body =
       authMode === "signup"
