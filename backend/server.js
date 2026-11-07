@@ -32,7 +32,28 @@ app.get("/api/health", (req, res) => {
     message: "Asan Pakistan API is working!",
   });
 });
+app.use(async (req, res, next) => {
+  try {
+    if (!process.env.MONGODB_URI) {
+      return res.status(500).json({
+        success: false,
+        message: "MONGODB_URI is missing"
+      });
+    }
 
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(process.env.MONGODB_URI);
+    }
+
+    next();
+  } catch (error) {
+    console.error("MongoDB connection error:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Database connection failed"
+    });
+  }
+});
 // SIGNUP
 app.post("/api/auth/signup", async (req, res) => {
   try {
@@ -531,24 +552,6 @@ app.patch("/api/rides/:id/cancel", authMiddleware, async (req, res) => {
 });
 
 // START SERVER
-async function startServer() {
-  try {
-    if (!process.env.JWT_SECRET || !process.env.MONGODB_URI) {
-      throw new Error("JWT_SECRET or MONGODB_URI is missing in .env");
-    }
 
-    await mongoose.connect(process.env.MONGODB_URI);
-
-    console.log("MongoDB connected successfully!");
-
-    const PORT = process.env.PORT || 5000;
-
-    app.listen(PORT, () => {
-      console.log(`Asan Pakistan backend running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error("Server startup failed:", error.message);
-  }
-}
-
+module.exports = app;
 startServer();
