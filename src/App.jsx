@@ -177,7 +177,7 @@ async function handleDriverAuthSubmit(e) {
 
   try {
     const response = await fetch(
-      `http://asan-pakistan-opyb.vercel.app/api/driver/${isSignup ? "signup" : "login"}`,
+      `https://asan-pakistan-opyb.vercel.app/api/driver/${isSignup ? "signup" : "login"}`,
       {
         method: "POST",
         headers: {
@@ -221,10 +221,10 @@ async function fetchDriverRides() {
 
   try {
     const [requestsResponse, myRidesResponse] = await Promise.all([
-      fetch("http://asan-pakistan-opyb.vercel.app/api/driver/rides", {
+      fetch("https://asan-pakistan-opyb.vercel.app/api/driver/rides", {
         headers: { Authorization: `Bearer ${token}` },
       }),
-      fetch("http://asan-pakistan-opyb.vercel.app/api/driver/my-rides", {
+      fetch("https://asan-pakistan-opyb.vercel.app/api/driver/my-rides", {
         headers: { Authorization: `Bearer ${token}` },
       }),
     ]);
